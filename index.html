@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Kids English Stories</title>
+  <style>
+    :root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { margin: 0; background: #f6f7f9; color: #111; }
+    header { padding: 16px; background: #fff; border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; z-index: 10; }
+    h1 { margin: 0; font-size: 18px; }
+    .sub { margin-top: 6px; font-size: 13px; color: #555; }
+    main { padding: 16px; max-width: 920px; margin: 0 auto; }
+    .card { background: #fff; border: 1px solid #e6e8ee; border-radius: 16px; padding: 16px; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .label { font-size: 13px; color: #555; margin-bottom: 6px; }
+    select, button, input { font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1px solid #d4d8e2; background: #fff; }
+    button { cursor: pointer; }
+    button.primary { background: #111; color: #fff; border-color: #111; }
+    .hint { margin-top: 10px; font-size: 12px; color: #666; }
+    .controls { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .sentences { margin-top: 18px; display: grid; gap: 12px; }
+    .sentence { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #eef0f6; background: #fafbff; }
+    .sentence.active { background: #fff4cc; border-color: #f4b400; }
+    .text.en { font-size: 18px; line-height: 1.35; font-weight: 500; }
+    .sentence.active .text.en { font-weight: 700; }
+    .text.ko { margin-top: 4px; font-size: 14px; color: #666; }
+    .sentence.active .text.ko { color: #5c4a00; }
+    .btns { display: flex; gap: 8px; align-items: center; }
+    .pill { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid #e6e8ee; background:#f0f2f8; font-size:12px; color:#333; }
+    .warn { background:#fff6e5; border-color:#ffe2b3; color:#7a3b00; }
+    footer { text-align: center; font-size: 12px; color: #666; padding: 20px 0; }
+    @media (prefers-color-scheme: dark) {
+      body { background:#0b0c10; color:#f1f1f1; }
+      header, .card { background:#12131a; border-color:#26283a; }
+      .sentence { background:#151826; border-color:#20233a; }
+      .sentence.active { background:#3b3200; border-color:#f4b400; }
+      select, button, input { background:#12131a; color:#f1f1f1; border-color:#26283a; }
+      .sub, .label, .hint, footer { color:#b8b8c7; }
+      .text.ko { color:#b8b8c7; }
+      .sentence.active .text.ko { color:#ffe08a; }
+      .pill { background:#151826; border-color:#26283a; color:#d8d8e6; }
+      .warn { background:#2a1d00; border-color:#5b3a00; color:#ffd9a3; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Kids English Stories</h1>
+  <div class="sub">Sentence by sentence English listening</div>
+</header>
+
+<main>
+  <div class="card">
+
+    <div class="row" style="justify-content: space-between;">
+      <div class="row">
+        <div class="pill">Story + Korean</div>
+        <div class="pill warn" id="voiceStatus">Voice: loading...</div>
+      </div>
+      <div class="row">
+        <button id="refreshVoices">Refresh voices</button>
+      </div>
+    </div>
+
+    <div style="height: 10px;"></div>
+
+    <div class="row">
+      <div style="flex:1; min-width: 280px;">
+        <div class="label">Story</div>
+        <select id="storySelect" style="width:100%;"></select>
+      </div>
+      <div style="flex:1; min-width: 280px;">
+        <div class="label">Voice</div>
+        <select id="voiceSelect" style="width:100%;"></select>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div>
+        <div class="label">Speed</div>
+        <input id="rate" type="number" step="0.05" min="0.6" max="1.1" value="0.85">
+      </div>
+      <div>
+        <div class="label">Repeat</div>
+        <input id="repeat" type="number" min="1" max="3" value="1">
+      </div>
+      <button class="primary" id="playAll">Play All</button>
+      <button id="stop">Stop</button>
+    </div>
+
+    <div class="hint">
+      If Voice is empty: tap any ▶ once, then try “Refresh voices”. For best stability, open via http://localhost.
+    </div>
+
+    <div class="sentences" id="sentences"></div>
+  </div>
+</main>
+
+<footer>Made for kids learning English</footer>
+
+<script>
+/* ============ DATA (Aesop-based, edited) ============ */
+const stories = [
+  {
+    id: "aesop_02",
+    title: "The Tortoise and the Hare",
+    level: 1,
+    sentences: [
+      { idx: 1, text: "A hare was very fast.", ko: "토끼는 아주 빨랐어요." },
+      { idx: 2, text: "A tortoise was very slow.", ko: "거북이는 아주 느렸어요." },
+      { idx: 3, text: "The hare laughed at the tortoise.", ko: "토끼는 거북이를 비웃었어요." },
+      { idx: 4, text: "The tortoise felt calm.", ko: "거북이는 차분했어요." },
+      { idx: 5, text: "The hare said, \"Let us race.\"", ko: "토끼가 말했어요. \"경주하자.\"" },
+      { idx: 6, text: "The race started in the morning.", ko: "경주는 아침에 시작했어요." },
+      { idx: 7, text: "The hare ran very fast.", ko: "토끼는 아주 빠르게 달렸어요." },
+      { idx: 8, text: "Soon, he was far ahead.", ko: "곧 그는 멀리 앞서 있었어요." },
+      { idx: 9, text: "The hare felt sleepy.", ko: "토끼는 졸리기 시작했어요." },
+      { idx: 10, text: "He stopped and fell asleep.", ko: "그는 멈춰서 잠이 들었어요." },
+      { idx: 11, text: "The tortoise walked slowly.", ko: "거북이는 천천히 걸었어요." },
+      { idx: 12, text: "He did not stop.", ko: "그는 멈추지 않았어요." },
+      { idx: 13, text: "The tortoise reached the goal.", ko: "거북이는 결승점에 도착했어요." },
+      { idx: 14, text: "Slow and steady wins the race.", ko: "천천히 꾸준하면 결국 이겨요." }
+    ]
+  }
+];
+
+/* ============ ELEMENTS ============ */
+const storySelect = document.getElementById("storySelect");
+const voiceSelect = document.getElementById("voiceSelect");
+const sentencesEl = document.getElementById("sentences");
+const playAllBtn = document.getElementById("playAll");
+const stopBtn = document.getElementById("stop");
+const rateInput = document.getElementById("rate");
+const repeatInput = document.getElementById("repeat");
+const refreshVoicesBtn = document.getElementById("refreshVoices");
+const voiceStatus = document.getElementById("voiceStatus");
+
+let voices = [];
+let currentStory = stories[0];
+let playingAll = false;
+
+/* ============ HELPERS ============ */
+function setStatus(text, warn=false){
+  voiceStatus.textContent = text;
+  voiceStatus.classList.toggle("warn", warn);
+}
+
+function populateStories(){
+  storySelect.innerHTML = "";
+  for (const s of stories){
+    const opt = document.createElement("option");
+    opt.value = s.id;
+    opt.textContent = `${s.title} (Level ${s.level})`;
+    storySelect.appendChild(opt);
+  }
+  storySelect.value = currentStory.id;
+}
+
+function renderSentences(){
+  sentencesEl.innerHTML = "";
+  for (const s of currentStory.sentences){
+    const row = document.createElement("div");
+    row.className = "sentence";
+    row.dataset.idx = String(s.idx);
+
+    const textWrap = document.createElement("div");
+    const en = document.createElement("div");
+    en.className = "text en";
+    en.textContent = s.text;
+
+    const ko = document.createElement("div");
+    ko.className = "text ko";
+    ko.textContent = s.ko || "";
+
+    textWrap.appendChild(en);
+    textWrap.appendChild(ko);
+
+    const btns = document.createElement("div");
+    btns.className = "btns";
+
+    const playBtn = document.createElement("button");
+    playBtn.textContent = "▶";
+    playBtn.addEventListener("click", () => playSentence(s.idx, 1));
+
+    const repBtn = document.createElement("button");
+    repBtn.textContent = "🔁";
+    repBtn.addEventListener("click", () => playSentence(s.idx, 2));
+
+    btns.appendChild(playBtn);
+    btns.appendChild(repBtn);
+
+    row.appendChild(textWrap);
+    row.appendChild(btns);
+    sentencesEl.appendChild(row);
+  }
+}
+
+function getSelectedVoice(){
+  const uri = voiceSelect.value;
+  return voices.find(v => v.voiceURI === uri) || null;
+}
+
+function highlight(idx){
+  document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
+  const row = document.querySelector(`.sentence[data-idx="${idx}"]`);
+  if (row) row.classList.add("active");
+}
+
+/* ============ VOICES ============ */
+function loadVoices(){
+  if (!("speechSynthesis" in window)){
+    setStatus("Voice: not supported", true);
+    return;
+  }
+  voices = speechSynthesis.getVoices() || [];
+  voiceSelect.innerHTML = "";
+
+  if (!voices.length){
+    setStatus("Voice: empty (tap ▶ once, then refresh)", true);
+    return;
+  }
+
+  // prefer English voices first
+  const sorted = [...voices].sort((a,b) => {
+    const aEn = (a.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
+    const bEn = (b.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
+    return aEn - bEn;
+  });
+
+  for (const v of sorted){
+    const opt = document.createElement("option");
+    opt.value = v.voiceURI;
+    opt.textContent = `${v.name} — ${v.lang}`;
+    voiceSelect.appendChild(opt);
+  }
+
+  setStatus(`Voice: ${voices.length} loaded`, false);
+}
+
+speechSynthesis.onvoiceschanged = () => loadVoices();
+
+/* ============ SPEAK ============ */
+function speakOnce(text){
+  return new Promise((resolve, reject) => {
+    const u = new SpeechSynthesisUtterance(text);
+    const v = getSelectedVoice();
+    if (v) u.voice = v;
+    u.lang = v?.lang || "en-US";
+    u.rate = Math.min(1.1, Math.max(0.6, Number(rateInput.value || 0.85)));
+    u.onend = () => resolve();
+    u.onerror = (e) => reject(e);
+    speechSynthesis.speak(u);
+  });
+}
+
+async function playSentence(idx, forceRepeat){
+  playingAll = false;
+  speechSynthesis.cancel();
+  highlight(idx);
+
+  const s = currentStory.sentences.find(x => x.idx === idx);
+  if (!s) return;
+
+  const repeat = Math.min(3, Math.max(1, Math.round(forceRepeat || Number(repeatInput.value || 1))));
+  for (let i=0; i<repeat; i++){
+    await speakOnce(s.text);
+  }
+}
+
+async function playAll(){
+  if (!currentStory) return;
+  playingAll = true;
+  speechSynthesis.cancel();
+
+  for (const s of currentStory.sentences){
+    if (!playingAll) break;
+    highlight(s.idx);
+    const repeat = Math.min(3, Math.max(1, Math.round(Number(repeatInput.value || 1))));
+    for (let i=0; i<repeat; i++){
+      if (!playingAll) break;
+      await speakOnce(s.text);
+    }
+  }
+  playingAll = false;
+  highlight(-1);
+}
+
+function stopAll(){
+  playingAll = false;
+  speechSynthesis.cancel();
+  highlight(-1);
+}
+
+/* ============ EVENTS ============ */
+storySelect.addEventListener("change", (e) => {
+  const id = e.target.value;
+  currentStory = stories.find(s => s.id === id) || stories[0];
+  stopAll();
+  renderSentences();
+});
+
+refreshVoicesBtn.addEventListener("click", () => loadVoices());
+playAllBtn.addEventListener("click", () => playAll());
+stopBtn.addEventListener("click", () => stopAll());
+
+/* ============ INIT ============ */
+populateStories();
+renderSentences();
+loadVoices();
+</script>
+</body>
+</html>
