@@ -113,6 +113,16 @@
       <div class="btn">
         <button class="primary" id="playAll">Play All</button>
         <button id="stop">Stop</button>
+  <button id="testBtn" type="button">테스트</button>
+
+  <span id="levelBox" style="display:none; margin-left:8px;">
+    <label for="levelSelect">레벨:</label>
+    <select id="levelSelect">
+      <option value="beginner">초급</option>
+      <option value="intermediate">중급</option>
+      <option value="advanced">고급</option>
+    </select>
+  </span>
       </div>
     </div>
 
@@ -136,6 +146,9 @@ const sentencesEl = document.getElementById("sentences");
 
 const playAllBtn = document.getElementById("playAll");
 const stopBtn = document.getElementById("stop");
+const testBtn = document.getElementById("testBtn");
+const levelBox = document.getElementById("levelBox");
+const levelSelect = document.getElementById("levelSelect");
 const refreshVoicesBtn = document.getElementById("refreshVoices");
 
 const rateInput = document.getElementById("rate");
@@ -149,6 +162,10 @@ let voices = [];
 let manifest = [];         // list of stories from manifest.json
 let currentStory = null;   // currently loaded story json
 let playingAll = false;
+
+// Test/Level mode
+let level = localStorage.getItem("kes_level") || "beginner";
+let lastHighlightedIdx = -1;
 
 /* ================== HELPERS ================== */
 function setVoiceStatus(text, warn=false){
@@ -173,6 +190,7 @@ function highlight(idx){
   document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
   const row = document.querySelector(`.sentence[data-idx="${idx}"]`);
   if (row) row.classList.add("active");
+  lastHighlightedIdx = idx;
 }
 
 function getSelectedVoice(){
@@ -233,6 +251,32 @@ if ("speechSynthesis" in window){
   speechSynthesis.onvoiceschanged = () => loadVoices();
 }
 
+function englishHint(text, wordsToShow = 2) {
+  const words = (text || "").trim().split(/\s+/);
+  if (words.length <= wordsToShow) return text || "";
+  return words.slice(0, wordsToShow).join(" ") + " …";
+}
+
+function applyLevelToSentenceElements(enEl, koEl, s){
+  if (level === "beginner") {
+    enEl.style.display = "";
+    koEl.style.display = "";
+    enEl.textContent = englishHint(s.text, 2); // 초급: 일부 영어 + 한글
+    koEl.textContent = s.ko || "";
+  } else if (level === "intermediate") {
+    enEl.style.display = "none";              // 중급: 한글만
+    koEl.style.display = "";
+    enEl.textContent = "";
+    koEl.textContent = s.ko || "";
+  } else {
+    // 고급: 아무것도 표시 안 함
+    enEl.style.display = "none";
+    koEl.style.display = "none";
+    enEl.textContent = "";
+    koEl.textContent = "";
+  }
+}
+
 /* ================== RENDER ================== */
 function renderSentences(){
   sentencesEl.innerHTML = "";
@@ -247,11 +291,10 @@ function renderSentences(){
 
     const en = document.createElement("div");
     en.className = "text en";
-    en.textContent = s.text;
-
     const ko = document.createElement("div");
     ko.className = "text ko";
-    ko.textContent = s.ko || "";
+
+    applyLevelToSentenceElements(en, ko, s);
 
     textWrap.appendChild(en);
     textWrap.appendChild(ko);
@@ -274,6 +317,7 @@ function renderSentences(){
     row.appendChild(btns);
     sentencesEl.appendChild(row);
   }
+  highlight(lastHighlightedIdx);
 }
 
 /* ================== SPEAK ================== */
@@ -389,6 +433,21 @@ storySelect.addEventListener("change", async (e) => {
 refreshVoicesBtn.addEventListener("click", () => loadVoices());
 playAllBtn.addEventListener("click", () => playAll());
 stopBtn.addEventListener("click", () => stopAll());
+
+// Test button: toggle level selector
+if (levelSelect) levelSelect.value = level;
+
+testBtn?.addEventListener("click", () => {
+  if (!levelBox) return;
+  levelBox.style.display = (levelBox.style.display === "none") ? "inline-block" : "none";
+});
+
+levelSelect?.addEventListener("change", () => {
+  level = levelSelect.value;
+  localStorage.setItem("kes_level", level);
+  renderSentences();
+});
+
 
 /* ================== INIT ================== */
 (async function init(){
