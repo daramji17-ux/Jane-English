@@ -7,31 +7,19 @@
 
   <style>
     :root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-
     body { margin: 0; background: #f6f7f9; color: #111; }
     header { padding: 16px; background: #ffffff; border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; z-index: 10; }
     h1 { margin: 0; font-size: 18px; }
     .sub { margin-top: 6px; font-size: 13px; color: #555; }
-
     main { padding: 16px; max-width: 920px; margin: 0 auto; }
     .card { background: #ffffff; border: 1px solid #e6e8ee; border-radius: 16px; padding: 16px; }
-
     .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
     .label { font-size: 13px; color: #555; margin-bottom: 6px; }
-
-    select, button, input {
-      font-size: 16px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid #d4d8e2;
-      background: #fff;
-    }
+    select, button, input { font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1px solid #d4d8e2; background: #fff; }
     button { cursor: pointer; }
     button.primary { background: #111; color: #fff; border-color: #111; }
-
     .hint { margin-top: 10px; font-size: 12px; color: #666; }
 
-    /* 3 inputs + 2 buttons layout */
     .controls {
       margin-top: 12px;
       display: grid;
@@ -43,34 +31,22 @@
     .controls .btn button { flex: 1; min-width: 140px; }
 
     .badges { display:flex; justify-content: space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 10px; }
-    .pill {
-      display:inline-flex; gap:8px; align-items:center;
-      padding:6px 10px; border-radius:999px;
-      border:1px solid #e6e8ee; background:#f0f2f8;
-      font-size:12px; color:#333;
-    }
+    .pill { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid #e6e8ee; background:#f0f2f8; font-size:12px; color:#333; }
     .warn { background:#fff6e5; border-color:#ffe2b3; color:#7a3b00; }
 
     .sentences { margin-top: 18px; display: grid; gap: 12px; }
+    .sentence { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #eef0f6; background: #fafbff; }
 
-    .sentence {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      padding: 14px;
-      border-radius: 14px;
-      border: 1px solid #eef0f6;
-      background: #fafbff;
-    }
-
-    /* Highlight: soft yellow */
     .sentence.active { background: #fff4cc; border-color: #f4b400; }
     .text.en { font-size: 18px; line-height: 1.35; font-weight: 500; }
     .sentence.active .text.en { font-weight: 700; }
     .text.ko { margin-top: 4px; font-size: 14px; color: #666; }
     .sentence.active .text.ko { color: #5c4a00; }
-
     .btns { display: flex; gap: 8px; align-items: center; }
+
+    .statusline { margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; font-size:12px; color:#555; }
+    .statusline .err { color:#a40000; }
+    .statusline .ok { color:#0b6b0b; }
 
     footer { text-align: center; font-size: 12px; color: #666; padding: 20px 0; }
 
@@ -85,14 +61,15 @@
       .sentence.active .text.ko { color:#ffe08a; }
       .pill { background:#151826; border-color:#26283a; color:#d8d8e6; }
       .warn { background:#2a1d00; border-color:#5b3a00; color:#ffd9a3; }
+      .statusline { color:#b8b8c7; }
     }
   </style>
 </head>
 
 <body>
 <header>
-  <h1> 재인이의 영어 공부 세상</h1>
-  <div class="sub">Sentence by sentence English listening</div>
+  <h1>재인이의 영어 교실 - Jane's English Claass</h1>
+  <div class="sub">Sentence by sentence English listening & speaking by Martin PARK</div>
 </header>
 
 <main>
@@ -140,8 +117,10 @@
     </div>
 
     <div class="hint">
-      If Voice is empty: tap any ▶ once, then press “Refresh voices”. For best stability, open via your GitHub Pages URL in Safari.
+      Stories are loaded from <code>/stories/*.json</code>. If Voice is empty: tap any ▶ once, then press “Refresh voices”.
     </div>
+
+    <div class="statusline" id="statusLine"></div>
 
     <div class="sentences" id="sentences"></div>
   </div>
@@ -150,51 +129,7 @@
 <footer>Made for kids learning English</footer>
 
 <script>
-/* ============ DATA (Aesop-based, edited) ============ */
-const stories = [
-  {
-    id: "aesop_02",
-    title: "The Tortoise and the Hare",
-    level: 1,
-    sentences: [
-      { idx: 1, text: "A hare was very fast.", ko: "토끼는 아주 빨랐어요." },
-      { idx: 2, text: "A tortoise was very slow.", ko: "거북이는 아주 느렸어요." },
-      { idx: 3, text: "The hare laughed at the tortoise.", ko: "토끼는 거북이를 비웃었어요." },
-      { idx: 4, text: "The tortoise felt calm.", ko: "거북이는 차분했어요." },
-      { idx: 5, text: "The hare said, \"Let us race.\"", ko: "토끼가 말했어요. \"경주하자.\"" },
-      { idx: 6, text: "The race started in the morning.", ko: "경주는 아침에 시작했어요." },
-      { idx: 7, text: "The hare ran very fast.", ko: "토끼는 아주 빠르게 달렸어요." },
-      { idx: 8, text: "Soon, he was far ahead.", ko: "곧 그는 멀리 앞서 있었어요." },
-      { idx: 9, text: "The hare felt sleepy.", ko: "토끼는 졸리기 시작했어요." },
-      { idx: 10, text: "He stopped and fell asleep.", ko: "그는 멈춰서 잠이 들었어요." },
-      { idx: 11, text: "The tortoise walked slowly.", ko: "거북이는 천천히 걸었어요." },
-      { idx: 12, text: "He did not stop.", ko: "그는 멈추지 않았어요." },
-      { idx: 13, text: "The tortoise reached the goal.", ko: "거북이는 결승점에 도착했어요." },
-      { idx: 14, text: "Slow and steady wins the race.", ko: "천천히 꾸준하면 결국 이겨요." }
-    ]
-  },
-  {
-    id: "aesop_03",
-    title: "The Lion and the Mouse",
-    level: 1,
-    sentences: [
-      { idx: 1, text: "A lion was sleeping.", ko: "사자는 자고 있었어요." },
-      { idx: 2, text: "A small mouse ran over him.", ko: "작은 쥐가 사자 위를 달렸어요." },
-      { idx: 3, text: "The lion woke up.", ko: "사자는 깨어났어요." },
-      { idx: 4, text: "He caught the mouse.", ko: "사자는 쥐를 붙잡았어요." },
-      { idx: 5, text: "The mouse said, \"Please let me go.\"", ko: "쥐가 말했어요. \"제발 살려주세요.\"" },
-      { idx: 6, text: "The lion laughed.", ko: "사자는 웃었어요." },
-      { idx: 7, text: "He let the mouse go.", ko: "그는 쥐를 놓아주었어요." },
-      { idx: 8, text: "Later, the lion was trapped.", ko: "나중에 사자는 덫에 걸렸어요." },
-      { idx: 9, text: "The mouse came back.", ko: "쥐가 다시 왔어요." },
-      { idx: 10, text: "The mouse bit the rope.", ko: "쥐는 밧줄을 갉았어요." },
-      { idx: 11, text: "The lion was free.", ko: "사자는 자유로워졌어요." },
-      { idx: 12, text: "Kindness is never wasted.", ko: "친절은 절대 헛되지 않아요." }
-    ]
-  }
-];
-
-/* ============ ELEMENTS ============ */
+/* ================== ELEMENTS ================== */
 const storySelect = document.getElementById("storySelect");
 const voiceSelect = document.getElementById("voiceSelect");
 const sentencesEl = document.getElementById("sentences");
@@ -208,32 +143,95 @@ const repeatInput = document.getElementById("repeat");
 const intervalInput = document.getElementById("interval");
 
 const voiceStatus = document.getElementById("voiceStatus");
+const statusLine = document.getElementById("statusLine");
 
 let voices = [];
-let currentStory = stories[0];
+let manifest = [];         // list of stories from manifest.json
+let currentStory = null;   // currently loaded story json
 let playingAll = false;
 
-/* ============ HELPERS ============ */
-function setStatus(text, warn=false){
+/* ================== HELPERS ================== */
+function setVoiceStatus(text, warn=false){
   voiceStatus.textContent = text;
   voiceStatus.classList.toggle("warn", warn);
 }
 
-function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
-
-function populateStories(){
-  storySelect.innerHTML = "";
-  for (const s of stories){
-    const opt = document.createElement("option");
-    opt.value = s.id;
-    opt.textContent = `${s.title} (Level ${s.level})`;
-    storySelect.appendChild(opt);
+function setStatusLine(items){
+  // items: [{text, cls}]
+  statusLine.innerHTML = "";
+  for (const it of items){
+    const span = document.createElement("span");
+    span.textContent = it.text;
+    if (it.cls) span.className = it.cls;
+    statusLine.appendChild(span);
   }
-  storySelect.value = currentStory.id;
 }
 
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+function highlight(idx){
+  document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
+  const row = document.querySelector(`.sentence[data-idx="${idx}"]`);
+  if (row) row.classList.add("active");
+}
+
+function getSelectedVoice(){
+  const uri = voiceSelect.value;
+  return voices.find(v => v.voiceURI === uri) || null;
+}
+
+function safeNumber(v, def=0){
+  const n = Number(v);
+  return Number.isFinite(n) ? n : def;
+}
+
+async function fetchJson(path){
+  const res = await fetch(path, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load ${path} (${res.status})`);
+  return await res.json();
+}
+
+/* ================== VOICES ================== */
+function loadVoices(){
+  if (!("speechSynthesis" in window)){
+    setVoiceStatus("Voice: not supported", true);
+    return;
+  }
+
+  voices = speechSynthesis.getVoices() || [];
+  voiceSelect.innerHTML = "";
+
+  if (!voices.length){
+    setVoiceStatus("Voice: empty (tap ▶ once, then refresh)", true);
+    return;
+  }
+
+  // Prefer English voices first
+  const sorted = [...voices].sort((a,b) => {
+    const aEn = (a.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
+    const bEn = (b.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
+    return aEn - bEn;
+  });
+
+  for (const v of sorted){
+    const opt = document.createElement("option");
+    opt.value = v.voiceURI;
+    opt.textContent = `${v.name} — ${v.lang}`;
+    voiceSelect.appendChild(opt);
+  }
+
+  setVoiceStatus(`Voice: ${voices.length} loaded`, false);
+}
+
+if ("speechSynthesis" in window){
+  speechSynthesis.onvoiceschanged = () => loadVoices();
+}
+
+/* ================== RENDER ================== */
 function renderSentences(){
   sentencesEl.innerHTML = "";
+  if (!currentStory) return;
+
   for (const s of currentStory.sentences){
     const row = document.createElement("div");
     row.className = "sentence";
@@ -272,61 +270,14 @@ function renderSentences(){
   }
 }
 
-function highlight(idx){
-  document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
-  const row = document.querySelector(`.sentence[data-idx="${idx}"]`);
-  if (row) row.classList.add("active");
-}
-
-function getSelectedVoice(){
-  const uri = voiceSelect.value;
-  return voices.find(v => v.voiceURI === uri) || null;
-}
-
-/* ============ VOICES ============ */
-function loadVoices(){
-  if (!("speechSynthesis" in window)){
-    setStatus("Voice: not supported", true);
-    return;
-  }
-
-  voices = speechSynthesis.getVoices() || [];
-  voiceSelect.innerHTML = "";
-
-  if (!voices.length){
-    setStatus("Voice: empty (tap ▶ once, then refresh)", true);
-    return;
-  }
-
-  // Prefer English voices first
-  const sorted = [...voices].sort((a,b) => {
-    const aEn = (a.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
-    const bEn = (b.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
-    return aEn - bEn;
-  });
-
-  for (const v of sorted){
-    const opt = document.createElement("option");
-    opt.value = v.voiceURI;
-    opt.textContent = `${v.name} — ${v.lang}`;
-    voiceSelect.appendChild(opt);
-  }
-
-  setStatus(`Voice: ${voices.length} loaded`, false);
-}
-
-if ("speechSynthesis" in window) {
-  speechSynthesis.onvoiceschanged = () => loadVoices();
-}
-
-/* ============ SPEAK ============ */
+/* ================== SPEAK ================== */
 function speakOnce(text){
   return new Promise((resolve, reject) => {
     const u = new SpeechSynthesisUtterance(text);
     const v = getSelectedVoice();
     if (v) u.voice = v;
     u.lang = v?.lang || "en-US";
-    u.rate = Math.min(1.1, Math.max(0.6, Number(rateInput.value || 0.85)));
+    u.rate = Math.min(1.1, Math.max(0.6, safeNumber(rateInput.value, 0.85)));
     u.onend = () => resolve();
     u.onerror = (e) => reject(e);
     speechSynthesis.speak(u);
@@ -339,13 +290,12 @@ async function playSentence(idx, forceRepeat){
 
   highlight(idx);
 
-  const s = currentStory.sentences.find(x => x.idx === idx);
+  const s = currentStory?.sentences?.find(x => x.idx === idx);
   if (!s) return;
 
-  const repeat = Math.min(3, Math.max(1, Math.round(forceRepeat || Number(repeatInput.value || 1))));
+  const repeat = Math.min(3, Math.max(1, Math.round(forceRepeat || safeNumber(repeatInput.value, 1))));
   for (let i=0; i<repeat; i++){
     await speakOnce(s.text);
-    // Small pause between repeats (not the main interval)
     if (i < repeat - 1) await sleep(250);
   }
 }
@@ -356,14 +306,14 @@ async function playAll(){
   playingAll = true;
   if ("speechSynthesis" in window) speechSynthesis.cancel();
 
-  const intervalMs = Math.max(0, Number(intervalInput.value || 0)) * 1000;
+  const intervalMs = Math.max(0, safeNumber(intervalInput.value, 0)) * 1000;
 
   for (const s of currentStory.sentences){
     if (!playingAll) break;
 
     highlight(s.idx);
 
-    const repeat = Math.min(3, Math.max(1, Math.round(Number(repeatInput.value || 1))));
+    const repeat = Math.min(3, Math.max(1, Math.round(safeNumber(repeatInput.value, 1))));
     for (let i=0; i<repeat; i++){
       if (!playingAll) break;
       await speakOnce(s.text);
@@ -384,22 +334,70 @@ function stopAll(){
   highlight(-1);
 }
 
-/* ============ EVENTS ============ */
-storySelect.addEventListener("change", (e) => {
-  const id = e.target.value;
-  currentStory = stories.find(s => s.id === id) || stories[0];
-  stopAll();
+/* ================== STORIES (FETCH) ================== */
+async function loadManifest(){
+  // Reads stories/manifest.json and populates dropdown
+  manifest = await fetchJson("stories/manifest.json");
+
+  storySelect.innerHTML = "";
+  for (const item of manifest){
+    const opt = document.createElement("option");
+    opt.value = item.id;
+    opt.textContent = `${item.title} (Level ${item.level})`;
+    storySelect.appendChild(opt);
+  }
+
+  // Default: first story
+  if (manifest.length){
+    storySelect.value = manifest[0].id;
+    await loadStoryById(manifest[0].id);
+  }
+}
+
+async function loadStoryById(id){
+  const item = manifest.find(m => m.id === id);
+  if (!item) throw new Error(`Story not found: ${id}`);
+
+  setStatusLine([{ text: "Loading story...", cls: "" }]);
+
+  currentStory = await fetchJson(`stories/${item.file}`);
+
   renderSentences();
+  setStatusLine([
+    { text: `Loaded: ${currentStory.title}`, cls: "ok" },
+    { text: ` • Sentences: ${currentStory.sentences.length}`, cls: "" }
+  ]);
+}
+
+/* ================== EVENTS ================== */
+storySelect.addEventListener("change", async (e) => {
+  stopAll();
+  try{
+    await loadStoryById(e.target.value);
+  }catch(err){
+    setStatusLine([{ text: String(err.message || err), cls: "err" }]);
+  }
 });
 
 refreshVoicesBtn.addEventListener("click", () => loadVoices());
 playAllBtn.addEventListener("click", () => playAll());
 stopBtn.addEventListener("click", () => stopAll());
 
-/* ============ INIT ============ */
-populateStories();
-renderSentences();
-loadVoices();
+/* ================== INIT ================== */
+(async function init(){
+  loadVoices();
+
+  try{
+    await loadManifest();
+  }catch(err){
+    // most common: missing stories folder/files
+    setStatusLine([
+      { text: "Failed to load stories.", cls: "err" },
+      { text: " • Create /stories/manifest.json and story files.", cls: "" },
+      { text: ` • ${String(err.message || err)}`, cls: "" }
+    ]);
+  }
+})();
 </script>
 </body>
 </html>
