@@ -68,7 +68,7 @@
 
 <body>
 <header>
-  <h1>재인이의 영어 교실 - Jane's English Claass</h1>
+  <h1>재인이의 영어 교실 - Jane's English Class</h1>
   <div class="sub">Sentence by sentence English listening & speaking by Martin PARK</div>
 </header>
 
@@ -301,7 +301,10 @@ async function playSentence(idx, forceRepeat){
 }
 
 async function playAll(){
-  if (!currentStory) return;
+  if (!currentStory) {
+    setStatusLine([{ text: "Please select a story first.", cls: "err" }]);
+    return;
+  }
 
   playingAll = true;
   if ("speechSynthesis" in window) speechSynthesis.cancel();
@@ -336,7 +339,6 @@ function stopAll(){
 
 /* ================== STORIES (FETCH) ================== */
 async function loadManifest(){
-  // Reads stories/manifest.json and populates dropdown
   manifest = await fetchJson("stories/manifest.json");
 
   storySelect.innerHTML = "";
@@ -347,7 +349,6 @@ async function loadManifest(){
     storySelect.appendChild(opt);
   }
 
-  // Default: first story
   if (manifest.length){
     storySelect.value = manifest[0].id;
     await loadStoryById(manifest[0].id);
@@ -386,11 +387,13 @@ stopBtn.addEventListener("click", () => stopAll());
 /* ================== INIT ================== */
 (async function init(){
   loadVoices();
+  // iOS Safari: voices can appear late; retry a couple of times
+  setTimeout(loadVoices, 300);
+  setTimeout(loadVoices, 1200);
 
   try{
     await loadManifest();
   }catch(err){
-    // most common: missing stories folder/files
     setStatusLine([
       { text: "Failed to load stories.", cls: "err" },
       { text: " • Create /stories/manifest.json and story files.", cls: "" },
