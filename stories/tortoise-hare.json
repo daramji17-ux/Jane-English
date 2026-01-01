@@ -1,0 +1,21 @@
+{
+  "id": "aesop_02",
+  "title": "The Tortoise and the Hare",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A hare was very fast.", "ko": "토끼는 아주 빨랐어요." },
+    { "idx": 2, "text": "A tortoise was very slow.", "ko": "거북이는 아주 느렸어요." },
+    { "idx": 3, "text": "The hare laughed at the tortoise.", "ko": "토끼는 거북이를 비웃었어요." },
+    { "idx": 4, "text": "The tortoise felt calm.", "ko": "거북이는 차분했어요." },
+    { "idx": 5, "text": "The hare said, \"Let us race.\"", "ko": "토끼가 말했어요. \"경주하자.\"" },
+    { "idx": 6, "text": "The race started in the morning.", "ko": "경주는 아침에 시작했어요." },
+    { "idx": 7, "text": "The hare ran very fast.", "ko": "토끼는 아주 빠르게 달렸어요." },
+    { "idx": 8, "text": "Soon, he was far ahead.", "ko": "곧 그는 멀리 앞서 있었어요." },
+    { "idx": 9, "text": "The hare felt sleepy.", "ko": "토끼는 졸리기 시작했어요." },
+    { "idx": 10, "text": "He stopped and fell asleep.", "ko": "그는 멈춰서 잠이 들었어요." },
+    { "idx": 11, "text": "The tortoise walked slowly.", "ko": "거북이는 천천히 걸었어요." },
+    { "idx": 12, "text": "He did not stop.", "ko": "그는 멈추지 않았어요." },
+    { "idx": 13, "text": "The tortoise reached the goal.", "ko": "거북이는 결승점에 도착했어요." },
+    { "idx": 14, "text": "Slow and steady wins the race.", "ko": "천천히 꾸준하면 결국 이겨요." }
+  ]
+}
