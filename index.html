@@ -10,130 +10,116 @@
     body { margin: 0; background: #f6f7f9; color: #111; }
     header { padding: 16px; background: #ffffff; border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; z-index: 10; }
     h1 { margin: 0; font-size: 18px; }
-    .sub { margin-top: 6px; font-size: 13px; color: #555; }
-    main { padding: 16px; max-width: 920px; margin: 0 auto; }
-    .card { background: #ffffff; border: 1px solid #e6e8ee; border-radius: 16px; padding: 16px; }
-    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .label { font-size: 13px; color: #555; margin-bottom: 6px; }
-    select, button, input { font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1px solid #d4d8e2; background: #fff; }
-    button { cursor: pointer; }
-    button.primary { background: #111; color: #fff; border-color: #111; }
-    .hint { margin-top: 10px; font-size: 12px; color: #666; }
-
-    .controls {
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(140px, 1fr));
-      gap: 10px;
-      align-items: end;
+    .wrap { max-width: 920px; margin: 0 auto; padding: 16px; }
+    .card { background: #fff; border: 1px solid #e6e8ee; border-radius: 12px; padding: 14px; box-shadow: 0 1px 0 rgba(0,0,0,0.02); }
+    .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    label { font-size: 12px; color: #444; }
+    select, input[type="number"] {
+      padding: 8px 10px; border: 1px solid #d7dbe6; border-radius: 10px; background: #fff; font-size: 14px;
     }
-    .controls .btn { grid-column: span 3; display: flex; gap: 10px; flex-wrap: wrap; }
-    .controls .btn button { flex: 1; min-width: 140px; }
-
-    .badges { display:flex; justify-content: space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 10px; }
-    .pill { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid #e6e8ee; background:#f0f2f8; font-size:12px; color:#333; }
-    .warn { background:#fff6e5; border-color:#ffe2b3; color:#7a3b00; }
-
-    .sentences { margin-top: 18px; display: grid; gap: 12px; }
-    .sentence { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #eef0f6; background: #fafbff; }
-
-    .sentence.active { background: #fff4cc; border-color: #f4b400; }
-    .text.en { font-size: 18px; line-height: 1.35; font-weight: 500; }
-    .sentence.active .text.en { font-weight: 700; }
-    .text.ko { margin-top: 4px; font-size: 14px; color: #666; }
-    .sentence.active .text.ko { color: #5c4a00; }
+    button {
+      padding: 10px 12px; border-radius: 10px; border: 1px solid #d7dbe6; background: #fff; cursor: pointer;
+      font-size: 14px;
+    }
+    button.primary { background: #0b5fff; color: #fff; border-color: #0b5fff; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .muted { color: #666; font-size: 12px; }
+    .status { margin-top: 8px; font-size: 12px; }
+    .status .ok { color: #146c2e; }
+    .status .warn { color: #8a6d00; }
+    .status .err { color: #b00020; }
+    .sentences { margin-top: 14px; display: flex; flex-direction: column; gap: 8px; }
+    .sentence {
+      display: grid; grid-template-columns: 1fr auto; gap: 10px;
+      border: 1px solid #e6e8ee; border-radius: 12px; padding: 12px;
+      background: #fff;
+    }
+    .sentence.active { outline: 2px solid rgba(11,95,255,0.25); border-color: rgba(11,95,255,0.35); }
+    .text { line-height: 1.35; }
+    .en { font-size: 16px; }
+    .ko { font-size: 13px; color: #444; margin-top: 6px; }
     .btns { display: flex; gap: 8px; align-items: center; }
-
-    .statusline { margin-top: 10px; display:flex; gap:8px; flex-wrap:wrap; font-size:12px; color:#555; }
-    .statusline .err { color:#a40000; }
-    .statusline .ok { color:#0b6b0b; }
-
-    footer { text-align: center; font-size: 12px; color: #666; padding: 20px 0; }
-
-    @media (prefers-color-scheme: dark) {
-      body { background:#0b0c10; color:#f1f1f1; }
-      header, .card { background:#12131a; border-color:#26283a; }
-      select, button, input { background:#12131a; color:#f1f1f1; border-color:#26283a; }
-      .sub, .label, .hint, footer { color:#b8b8c7; }
-      .sentence { background:#151826; border-color:#20233a; }
-      .sentence.active { background:#3b3200; border-color:#f4b400; }
-      .text.ko { color:#b8b8c7; }
-      .sentence.active .text.ko { color:#ffe08a; }
-      .pill { background:#151826; border-color:#26283a; color:#d8d8e6; }
-      .warn { background:#2a1d00; border-color:#5b3a00; color:#ffd9a3; }
-      .statusline { color:#b8b8c7; }
+    .tiny { font-size: 12px; padding: 8px 10px; }
+    footer { padding: 18px; text-align: center; font-size: 12px; color: #666; }
+    .controls { display: grid; gap: 10px; }
+    .controls .line { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+    .controls .btn { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 10px; border: 1px solid #e6e8ee; border-radius: 999px;
+      font-size: 12px; color: #444; background: #fff;
     }
   </style>
 </head>
 
 <body>
 <header>
-  <h1>재인이의 영어 교실 - Jane's English Class</h1>
-  <div class="sub">Sentence by sentence English listening & speaking by Martin PARK</div>
+  <div class="wrap">
+    <h1>Kids English Stories</h1>
+    <div class="muted">Sentence-by-sentence listening & repeating (with optional Korean).</div>
+  </div>
 </header>
 
-<main>
-  <div class="card">
+<main class="wrap">
+  <div class="card controls">
+    <div class="line">
+      <div>
+        <label for="storySelect">Story</label><br/>
+        <select id="storySelect"></select>
+      </div>
 
-    <div class="badges">
-      <div class="row">
-        <div class="pill">English + Korean</div>
-        <div class="pill warn" id="voiceStatus">Voice: loading...</div>
+      <div>
+        <label for="voiceSelect">Voice (TTS)</label><br/>
+        <select id="voiceSelect"></select>
       </div>
-      <div class="row">
-        <button id="refreshVoices">Refresh voices</button>
+
+      <div>
+        <label>&nbsp;</label><br/>
+        <button id="refreshVoices" class="tiny">Refresh voices</button>
       </div>
+
+      <span class="pill" id="modePill" title="Display mode">Mode: All</span>
     </div>
 
-    <div class="row">
-      <div style="flex:1; min-width: 280px;">
-        <div class="label">Story</div>
-        <select id="storySelect" style="width:100%;"></select>
+    <div class="line">
+      <div>
+        <label for="rate">Speed</label><br/>
+        <input id="rate" type="number" value="0.95" min="0.6" max="1.3" step="0.05" />
       </div>
-      <div style="flex:1; min-width: 280px;">
-        <div class="label">Voice</div>
-        <select id="voiceSelect" style="width:100%;"></select>
-      </div>
-    </div>
 
-    <div class="controls">
       <div>
-        <div class="label">Speed</div>
-        <input id="rate" type="number" step="0.05" min="0.6" max="1.1" value="0.85">
+        <label for="repeat">Repeat</label><br/>
+        <input id="repeat" type="number" value="1" min="1" max="10" step="1" />
       </div>
+
       <div>
-        <div class="label">Repeat</div>
-        <input id="repeat" type="number" min="1" max="3" value="1">
-      </div>
-      <div>
-        <div class="label">Interval (sec)</div>
-        <input id="interval" type="number" min="0" max="5" step="0.5" value="1.5">
+        <label for="interval">Interval (sec)</label><br/>
+        <input id="interval" type="number" value="0.6" min="0" max="6" step="0.1" />
       </div>
 
       <div class="btn">
         <button class="primary" id="playAll">Play All</button>
         <button id="stop">Stop</button>
-  <button id="testBtn" type="button">테스트</button>
 
-  <span id="levelBox" style="display:none; margin-left:8px;">
-    <label for="levelSelect">레벨:</label>
-    <select id="levelSelect">
-      <option value="beginner">초급</option>
-      <option value="intermediate">중급</option>
-      <option value="advanced">고급</option>
-    </select>
-  </span>
+        <!-- Test / Level UI -->
+        <button id="testBtn" type="button">테스트</button>
+        <button id="resetBtn" type="button">전체 보기</button>
+
+        <span id="levelBox" style="display:none; margin-left:8px;">
+          <label for="levelSelect">레벨:</label>
+          <select id="levelSelect">
+            <option value="beginner">초급</option>
+            <option value="intermediate">중급</option>
+            <option value="advanced">고급</option>
+          </select>
+        </span>
       </div>
     </div>
 
-    <div class="hint">
-      Stories are loaded from <code>/stories/*.json</code>. If Voice is empty: tap any ▶ once, then press “Refresh voices”.
-    </div>
-
-    <div class="statusline" id="statusLine"></div>
-
-    <div class="sentences" id="sentences"></div>
+    <div class="status" id="statusLine"></div>
   </div>
+
+  <div class="sentences" id="sentences"></div>
 </main>
 
 <footer>Made for kids learning English</footer>
@@ -147,6 +133,7 @@ const sentencesEl = document.getElementById("sentences");
 const playAllBtn = document.getElementById("playAll");
 const stopBtn = document.getElementById("stop");
 const testBtn = document.getElementById("testBtn");
+const resetBtn = document.getElementById("resetBtn");
 const levelBox = document.getElementById("levelBox");
 const levelSelect = document.getElementById("levelSelect");
 const refreshVoicesBtn = document.getElementById("refreshVoices");
@@ -155,36 +142,53 @@ const rateInput = document.getElementById("rate");
 const repeatInput = document.getElementById("repeat");
 const intervalInput = document.getElementById("interval");
 
-const voiceStatus = document.getElementById("voiceStatus");
 const statusLine = document.getElementById("statusLine");
+const modePill = document.getElementById("modePill");
 
+/* ================== STATE ================== */
 let voices = [];
 let manifest = [];         // list of stories from manifest.json
-let currentStory = null;   // currently loaded story json
+let currentStory = null;   // { title, sentences: [{idx,text,ko}] }
 let playingAll = false;
 
-// Test/Level mode
-let level = localStorage.getItem("kes_level") || "beginner";
+// Display mode:
+// - "all": show full EN + full KO (default on every new visit)
+// - "beginner": show EN hint + KO
+// - "intermediate": show KO only
+// - "advanced": show nothing
+let displayMode = "all";
+
+// keep active row across re-render
 let lastHighlightedIdx = -1;
 
 /* ================== HELPERS ================== */
-function setVoiceStatus(text, warn=false){
-  voiceStatus.textContent = text;
-  voiceStatus.classList.toggle("warn", warn);
-}
-
 function setStatusLine(items){
-  // items: [{text, cls}]
   statusLine.innerHTML = "";
-  for (const it of items){
+  for (const it of (items || [])){
     const span = document.createElement("span");
     span.textContent = it.text;
-    if (it.cls) span.className = it.cls;
+    span.className = it.cls || "";
+    span.style.marginRight = "10px";
     statusLine.appendChild(span);
   }
 }
 
+function setModePill(){
+  const label =
+    displayMode === "all" ? "All" :
+    displayMode === "beginner" ? "Beginner" :
+    displayMode === "intermediate" ? "Intermediate" :
+    "Advanced";
+  modePill.textContent = `Mode: ${label}`;
+}
+
 function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
+
+function stopAll(){
+  playingAll = false;
+  window.speechSynthesis.cancel();
+  setStatusLine([{ text: "Stopped.", cls: "warn" }]);
+}
 
 function highlight(idx){
   document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
@@ -194,82 +198,174 @@ function highlight(idx){
 }
 
 function getSelectedVoice(){
-  const uri = voiceSelect.value;
-  return voices.find(v => v.voiceURI === uri) || null;
+  const name = voiceSelect.value;
+  return voices.find(v => v.name === name) || voices[0] || null;
 }
 
-function safeNumber(v, def=0){
-  const n = Number(v);
-  return Number.isFinite(n) ? n : def;
-}
-function baseUrl() {
-  // Ensure trailing slash so relative URLs resolve correctly
-  const u = new URL(window.location.href);
-  if (!u.pathname.endsWith("/")) u.pathname += "/";
-  return u;
-}
-async function fetchJson(path){
-  const url = new URL(path, baseUrl()); // robust on GitHub Pages
-  const res = await fetch(url.toString(), { cache: "no-store" });
-  if (!res.ok) throw new Error(`Failed to load ${url.pathname} (${res.status})`);
-  return await res.json();
+function normalizeStory(storyJson){
+  // Accept either:
+  // { title, sentences: [{en, ko} ...] }
+  // or { title, lines: [{text, ko} ...] }
+  const title = storyJson.title || storyJson.name || "Untitled";
+  const arr = storyJson.sentences || storyJson.lines || storyJson.data || [];
+  const sentences = arr.map((x, i) => ({
+    idx: i,
+    text: x.text ?? x.en ?? x.english ?? "",
+    ko: x.ko ?? x.korean ?? x.kr ?? ""
+  }));
+  return { title, sentences };
 }
 
 /* ================== VOICES ================== */
 function loadVoices(){
-  if (!("speechSynthesis" in window)){
-    setVoiceStatus("Voice: not supported", true);
-    return;
-  }
-
-  voices = speechSynthesis.getVoices() || [];
+  voices = window.speechSynthesis.getVoices() || [];
   voiceSelect.innerHTML = "";
 
   if (!voices.length){
-    setVoiceStatus("Voice: empty (tap ▶ once, then refresh)", true);
+    setStatusLine([{ text: "No voices yet. Try Refresh voices or wait a moment.", cls: "warn" }]);
     return;
   }
 
   // Prefer English voices first
   const sorted = [...voices].sort((a,b) => {
-    const aEn = (a.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
-    const bEn = (b.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
-    return aEn - bEn;
+    const aEn = (a.lang || "").toLowerCase().startsWith("en");
+    const bEn = (b.lang || "").toLowerCase().startsWith("en");
+    if (aEn !== bEn) return aEn ? -1 : 1;
+    return (a.name || "").localeCompare(b.name || "");
   });
 
   for (const v of sorted){
     const opt = document.createElement("option");
-    opt.value = v.voiceURI;
-    opt.textContent = `${v.name} — ${v.lang}`;
+    opt.value = v.name;
+    opt.textContent = `${v.name} (${v.lang})`;
     voiceSelect.appendChild(opt);
   }
 
-  setVoiceStatus(`Voice: ${voices.length} loaded`, false);
+  const firstEn = sorted.find(v => (v.lang || "").toLowerCase().startsWith("en"));
+  if (firstEn) voiceSelect.value = firstEn.name;
+
+  setStatusLine([{ text: `Voices loaded: ${voices.length}`, cls: "ok" }]);
 }
 
-if ("speechSynthesis" in window){
-  speechSynthesis.onvoiceschanged = () => loadVoices();
+window.speechSynthesis.onvoiceschanged = () => loadVoices();
+
+/* ================== DATA LOAD ================== */
+async function loadManifest(){
+  const res = await fetch("./stories/manifest.json", { cache: "no-store" });
+  if (!res.ok) throw new Error(`manifest.json load failed: ${res.status}`);
+  const json = await res.json();
+  manifest = Array.isArray(json) ? json : (json.stories || []);
+  return manifest;
 }
 
+function renderManifestOptions(){
+  storySelect.innerHTML = "";
+  for (const st of manifest){
+    const opt = document.createElement("option");
+    opt.value = st.id || st.file || st.slug || st.title;
+    opt.textContent = st.title || st.name || st.id || st.file;
+    opt.dataset.file = st.file || st.path || st.id;
+    storySelect.appendChild(opt);
+  }
+}
+
+function resolveStoryFileById(id){
+  const st = manifest.find(x => (x.id || x.file || x.slug || x.title) === id) || manifest[0];
+  if (!st) return null;
+  return st.file || st.path || (st.id ? `${st.id}.json` : null);
+}
+
+async function loadStoryById(id){
+  const file = resolveStoryFileById(id);
+  if (!file) throw new Error("No story file found.");
+  const res = await fetch(`./stories/${file}`, { cache: "no-store" });
+  if (!res.ok) throw new Error(`${file} load failed: ${res.status}`);
+  const json = await res.json();
+  currentStory = normalizeStory(json);
+  renderSentences();
+  setStatusLine([{ text: `Loaded story: ${currentStory.title}`, cls: "ok" }]);
+}
+
+/* ================== SPEAK ================== */
+async function speak(text){
+  return new Promise((resolve, reject) => {
+    if (!text || !text.trim()){
+      resolve();
+      return;
+    }
+
+    const u = new SpeechSynthesisUtterance(text);
+    const v = getSelectedVoice();
+    if (v) u.voice = v;
+
+    const rate = parseFloat(rateInput.value || "1");
+    u.rate = isFinite(rate) ? rate : 1;
+
+    u.onend = () => resolve();
+    u.onerror = (e) => reject(e.error || e);
+
+    window.speechSynthesis.speak(u);
+  });
+}
+
+async function playSentence(idx, repeatOverride){
+  const s = currentStory?.sentences?.[idx];
+  if (!s) return;
+
+  highlight(idx);
+
+  const repeatCount = repeatOverride ?? parseInt(repeatInput.value || "1", 10);
+  for (let r=0; r<repeatCount; r++){
+    await speak(s.text);
+    const intervalMs = Math.max(0, parseFloat(intervalInput.value || "0")) * 1000;
+    if (intervalMs) await sleep(intervalMs);
+  }
+}
+
+async function playAll(){
+  if (!currentStory) return;
+  playingAll = true;
+  setStatusLine([{ text: "Playing all…", cls: "ok" }]);
+
+  try{
+    for (const s of currentStory.sentences){
+      if (!playingAll) break;
+      await playSentence(s.idx);
+    }
+  }catch(err){
+    setStatusLine([{ text: `TTS error: ${String(err)}`, cls: "err" }]);
+  }finally{
+    playingAll = false;
+  }
+}
+
+/* ================== RENDER HELPERS (MODE) ================== */
 function englishHint(text, wordsToShow = 2) {
   const words = (text || "").trim().split(/\s+/);
   if (words.length <= wordsToShow) return text || "";
   return words.slice(0, wordsToShow).join(" ") + " …";
 }
 
-function applyLevelToSentenceElements(enEl, koEl, s){
-  if (level === "beginner") {
+function applyModeToSentenceElements(enEl, koEl, s){
+  if (displayMode === "all") {
     enEl.style.display = "";
     koEl.style.display = "";
-    enEl.textContent = englishHint(s.text, 2); // 초급: 일부 영어 + 한글
+    enEl.textContent = s.text || "";
     koEl.textContent = s.ko || "";
-  } else if (level === "intermediate") {
-    enEl.style.display = "none";              // 중급: 한글만
+    return;
+  }
+
+  if (displayMode === "beginner") {
+    enEl.style.display = "";
+    koEl.style.display = "";
+    enEl.textContent = englishHint(s.text || "", 2); // 일부 영어 + 한글
+    koEl.textContent = s.ko || "";
+  } else if (displayMode === "intermediate") {
+    enEl.style.display = "none";
     koEl.style.display = "";
     enEl.textContent = "";
     koEl.textContent = s.ko || "";
   } else {
-    // 고급: 아무것도 표시 안 함
     enEl.style.display = "none";
     koEl.style.display = "none";
     enEl.textContent = "";
@@ -291,10 +387,11 @@ function renderSentences(){
 
     const en = document.createElement("div");
     en.className = "text en";
+
     const ko = document.createElement("div");
     ko.className = "text ko";
 
-    applyLevelToSentenceElements(en, ko, s);
+    applyModeToSentenceElements(en, ko, s);
 
     textWrap.appendChild(en);
     textWrap.appendChild(ko);
@@ -303,12 +400,19 @@ function renderSentences(){
     btns.className = "btns";
 
     const playBtn = document.createElement("button");
-    playBtn.textContent = "▶";
+    playBtn.className = "tiny";
+    playBtn.textContent = "Play";
     playBtn.addEventListener("click", () => playSentence(s.idx, 1));
 
     const repBtn = document.createElement("button");
-    repBtn.textContent = "🔁";
+    repBtn.className = "tiny";
+    repBtn.textContent = "Repeat x2";
     repBtn.addEventListener("click", () => playSentence(s.idx, 2));
+
+    row.addEventListener("click", (e) => {
+      if (e.target && e.target.tagName === "BUTTON") return;
+      playSentence(s.idx, 1);
+    });
 
     btns.appendChild(playBtn);
     btns.appendChild(repBtn);
@@ -317,107 +421,8 @@ function renderSentences(){
     row.appendChild(btns);
     sentencesEl.appendChild(row);
   }
-  highlight(lastHighlightedIdx);
-}
 
-/* ================== SPEAK ================== */
-function speakOnce(text){
-  return new Promise((resolve, reject) => {
-    const u = new SpeechSynthesisUtterance(text);
-    const v = getSelectedVoice();
-    if (v) u.voice = v;
-    u.lang = v?.lang || "en-US";
-    u.rate = Math.min(1.1, Math.max(0.6, safeNumber(rateInput.value, 0.85)));
-    u.onend = () => resolve();
-    u.onerror = (e) => reject(e);
-    speechSynthesis.speak(u);
-  });
-}
-
-async function playSentence(idx, forceRepeat){
-  playingAll = false;
-  if ("speechSynthesis" in window) speechSynthesis.cancel();
-
-  highlight(idx);
-
-  const s = currentStory?.sentences?.find(x => x.idx === idx);
-  if (!s) return;
-
-  const repeat = Math.min(3, Math.max(1, Math.round(forceRepeat || safeNumber(repeatInput.value, 1))));
-  for (let i=0; i<repeat; i++){
-    await speakOnce(s.text);
-    if (i < repeat - 1) await sleep(250);
-  }
-}
-
-async function playAll(){
-  if (!currentStory) {
-    setStatusLine([{ text: "Please select a story first.", cls: "err" }]);
-    return;
-  }
-
-  playingAll = true;
-  if ("speechSynthesis" in window) speechSynthesis.cancel();
-
-  const intervalMs = Math.max(0, safeNumber(intervalInput.value, 0)) * 1000;
-
-  for (const s of currentStory.sentences){
-    if (!playingAll) break;
-
-    highlight(s.idx);
-
-    const repeat = Math.min(3, Math.max(1, Math.round(safeNumber(repeatInput.value, 1))));
-    for (let i=0; i<repeat; i++){
-      if (!playingAll) break;
-      await speakOnce(s.text);
-      if (i < repeat - 1) await sleep(250);
-    }
-
-    if (!playingAll) break;
-    if (intervalMs > 0) await sleep(intervalMs);
-  }
-
-  playingAll = false;
-  highlight(-1);
-}
-
-function stopAll(){
-  playingAll = false;
-  if ("speechSynthesis" in window) speechSynthesis.cancel();
-  highlight(-1);
-}
-
-/* ================== STORIES (FETCH) ================== */
-async function loadManifest(){
-  manifest = await fetchJson("stories/manifest.json");
-
-  storySelect.innerHTML = "";
-  for (const item of manifest){
-    const opt = document.createElement("option");
-    opt.value = item.id;
-    opt.textContent = `${item.title} (Level ${item.level})`;
-    storySelect.appendChild(opt);
-  }
-
-  if (manifest.length){
-    storySelect.value = manifest[0].id;
-    await loadStoryById(manifest[0].id);
-  }
-}
-
-async function loadStoryById(id){
-  const item = manifest.find(m => m.id === id);
-  if (!item) throw new Error(`Story not found: ${id}`);
-
-  setStatusLine([{ text: "Loading story...", cls: "" }]);
-
-  currentStory = await fetchJson(`stories/${item.file}`);
-
-  renderSentences();
-  setStatusLine([
-    { text: `Loaded: ${currentStory.title}`, cls: "ok" },
-    { text: ` • Sentences: ${currentStory.sentences.length}`, cls: "" }
-  ]);
+  if (lastHighlightedIdx >= 0) highlight(lastHighlightedIdx);
 }
 
 /* ================== EVENTS ================== */
@@ -434,35 +439,50 @@ refreshVoicesBtn.addEventListener("click", () => loadVoices());
 playAllBtn.addEventListener("click", () => playAll());
 stopBtn.addEventListener("click", () => stopAll());
 
-// Test button: toggle level selector
-if (levelSelect) levelSelect.value = level;
-
-testBtn?.addEventListener("click", () => {
-  if (!levelBox) return;
+// Test: toggle level selector
+testBtn.addEventListener("click", () => {
   levelBox.style.display = (levelBox.style.display === "none") ? "inline-block" : "none";
 });
 
-levelSelect?.addEventListener("change", () => {
-  level = levelSelect.value;
-  localStorage.setItem("kes_level", level);
+// Level selection changes displayMode (does NOT persist across visits)
+levelSelect.addEventListener("change", () => {
+  const v = levelSelect.value;
+  displayMode = v;               // beginner/intermediate/advanced
+  setModePill();
   renderSentences();
 });
 
+// Reset: show everything again (EN full + KO full)
+resetBtn.addEventListener("click", () => {
+  displayMode = "all";
+  setModePill();
+  // keep the selector value as-is (optional), but most users expect it to reset visually too:
+  levelSelect.value = "beginner";
+  renderSentences();
+});
 
 /* ================== INIT ================== */
 (async function init(){
+  setModePill();
+
   loadVoices();
-  // iOS Safari: voices can appear late; retry a couple of times
+  // voices can appear late; retry a couple of times
   setTimeout(loadVoices, 300);
-  setTimeout(loadVoices, 1200);
+  setTimeout(loadVoices, 900);
 
   try{
     await loadManifest();
+    renderManifestOptions();
+
+    if (storySelect.options.length){
+      await loadStoryById(storySelect.value);
+    }else{
+      setStatusLine([{ text: "No stories in manifest.json", cls: "warn" }]);
+    }
   }catch(err){
     setStatusLine([
-      { text: "Failed to load stories.", cls: "err" },
-      { text: " • Create /stories/manifest.json and story files.", cls: "" },
-      { text: ` • ${String(err.message || err)}`, cls: "" }
+      { text: "Failed to initialize.", cls: "err" },
+      { text: String(err.message || err), cls: "err" }
     ]);
   }
 })();
