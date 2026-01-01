@@ -184,10 +184,16 @@ function safeNumber(v, def=0){
   const n = Number(v);
   return Number.isFinite(n) ? n : def;
 }
-
+function baseUrl() {
+  // Ensure trailing slash so relative URLs resolve correctly
+  const u = new URL(window.location.href);
+  if (!u.pathname.endsWith("/")) u.pathname += "/";
+  return u;
+}
 async function fetchJson(path){
-  const res = await fetch(path, { cache: "no-store" });
-  if (!res.ok) throw new Error(`Failed to load ${path} (${res.status})`);
+  const url = new URL(path, baseUrl()); // robust on GitHub Pages
+  const res = await fetch(url.toString(), { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load ${url.pathname} (${res.status})`);
   return await res.json();
 }
 
