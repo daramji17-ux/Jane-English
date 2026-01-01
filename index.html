@@ -4,39 +4,83 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <title>Kids English Stories</title>
+
   <style>
     :root { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+
     body { margin: 0; background: #f6f7f9; color: #111; }
-    header { padding: 16px; background: #fff; border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; z-index: 10; }
+    header { padding: 16px; background: #ffffff; border-bottom: 1px solid #e6e8ee; position: sticky; top: 0; z-index: 10; }
     h1 { margin: 0; font-size: 18px; }
     .sub { margin-top: 6px; font-size: 13px; color: #555; }
+
     main { padding: 16px; max-width: 920px; margin: 0 auto; }
-    .card { background: #fff; border: 1px solid #e6e8ee; border-radius: 16px; padding: 16px; }
+    .card { background: #ffffff; border: 1px solid #e6e8ee; border-radius: 16px; padding: 16px; }
+
     .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
     .label { font-size: 13px; color: #555; margin-bottom: 6px; }
-    select, button, input { font-size: 16px; padding: 10px 12px; border-radius: 10px; border: 1px solid #d4d8e2; background: #fff; }
+
+    select, button, input {
+      font-size: 16px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #d4d8e2;
+      background: #fff;
+    }
     button { cursor: pointer; }
     button.primary { background: #111; color: #fff; border-color: #111; }
+
     .hint { margin-top: 10px; font-size: 12px; color: #666; }
-    .controls { margin-top: 12px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+
+    /* 3 inputs + 2 buttons layout */
+    .controls {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(140px, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+    .controls .btn { grid-column: span 3; display: flex; gap: 10px; flex-wrap: wrap; }
+    .controls .btn button { flex: 1; min-width: 140px; }
+
+    .badges { display:flex; justify-content: space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom: 10px; }
+    .pill {
+      display:inline-flex; gap:8px; align-items:center;
+      padding:6px 10px; border-radius:999px;
+      border:1px solid #e6e8ee; background:#f0f2f8;
+      font-size:12px; color:#333;
+    }
+    .warn { background:#fff6e5; border-color:#ffe2b3; color:#7a3b00; }
+
     .sentences { margin-top: 18px; display: grid; gap: 12px; }
-    .sentence { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 14px; border-radius: 14px; border: 1px solid #eef0f6; background: #fafbff; }
+
+    .sentence {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid #eef0f6;
+      background: #fafbff;
+    }
+
+    /* Highlight: soft yellow */
     .sentence.active { background: #fff4cc; border-color: #f4b400; }
     .text.en { font-size: 18px; line-height: 1.35; font-weight: 500; }
     .sentence.active .text.en { font-weight: 700; }
     .text.ko { margin-top: 4px; font-size: 14px; color: #666; }
     .sentence.active .text.ko { color: #5c4a00; }
+
     .btns { display: flex; gap: 8px; align-items: center; }
-    .pill { display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; border:1px solid #e6e8ee; background:#f0f2f8; font-size:12px; color:#333; }
-    .warn { background:#fff6e5; border-color:#ffe2b3; color:#7a3b00; }
+
     footer { text-align: center; font-size: 12px; color: #666; padding: 20px 0; }
+
     @media (prefers-color-scheme: dark) {
       body { background:#0b0c10; color:#f1f1f1; }
       header, .card { background:#12131a; border-color:#26283a; }
-      .sentence { background:#151826; border-color:#20233a; }
-      .sentence.active { background:#3b3200; border-color:#f4b400; }
       select, button, input { background:#12131a; color:#f1f1f1; border-color:#26283a; }
       .sub, .label, .hint, footer { color:#b8b8c7; }
+      .sentence { background:#151826; border-color:#20233a; }
+      .sentence.active { background:#3b3200; border-color:#f4b400; }
       .text.ko { color:#b8b8c7; }
       .sentence.active .text.ko { color:#ffe08a; }
       .pill { background:#151826; border-color:#26283a; color:#d8d8e6; }
@@ -44,26 +88,25 @@
     }
   </style>
 </head>
+
 <body>
 <header>
-  <h1>Jane English Class</h1>
+  <h1>Kids English Stories</h1>
   <div class="sub">Sentence by sentence English listening</div>
 </header>
 
 <main>
   <div class="card">
 
-    <div class="row" style="justify-content: space-between;">
+    <div class="badges">
       <div class="row">
-        <div class="pill">Story + Korean</div>
+        <div class="pill">English + Korean</div>
         <div class="pill warn" id="voiceStatus">Voice: loading...</div>
       </div>
       <div class="row">
         <button id="refreshVoices">Refresh voices</button>
       </div>
     </div>
-
-    <div style="height: 10px;"></div>
 
     <div class="row">
       <div style="flex:1; min-width: 280px;">
@@ -82,19 +125,22 @@
         <input id="rate" type="number" step="0.05" min="0.6" max="1.1" value="0.85">
       </div>
       <div>
-  <div class="label">Interval (sec)</div>
-  <input id="interval" type="number" min="0" max="5" step="0.5" value="1.5">
-</div>
-      <div>
         <div class="label">Repeat</div>
         <input id="repeat" type="number" min="1" max="3" value="1">
       </div>
-      <button class="primary" id="playAll">Play All</button>
-      <button id="stop">Stop</button>
+      <div>
+        <div class="label">Interval (sec)</div>
+        <input id="interval" type="number" min="0" max="5" step="0.5" value="1.5">
+      </div>
+
+      <div class="btn">
+        <button class="primary" id="playAll">Play All</button>
+        <button id="stop">Stop</button>
+      </div>
     </div>
 
     <div class="hint">
-      If Voice is empty: tap any ▶ once, then try “Refresh voices”. For best stability, open via http://localhost.
+      If Voice is empty: tap any ▶ once, then press “Refresh voices”. For best stability, open via your GitHub Pages URL in Safari.
     </div>
 
     <div class="sentences" id="sentences"></div>
@@ -126,38 +172,41 @@ const stories = [
       { idx: 13, text: "The tortoise reached the goal.", ko: "거북이는 결승점에 도착했어요." },
       { idx: 14, text: "Slow and steady wins the race.", ko: "천천히 꾸준하면 결국 이겨요." }
     ]
+  },
+  {
+    id: "aesop_03",
+    title: "The Lion and the Mouse",
+    level: 1,
+    sentences: [
+      { idx: 1, text: "A lion was sleeping.", ko: "사자는 자고 있었어요." },
+      { idx: 2, text: "A small mouse ran over him.", ko: "작은 쥐가 사자 위를 달렸어요." },
+      { idx: 3, text: "The lion woke up.", ko: "사자는 깨어났어요." },
+      { idx: 4, text: "He caught the mouse.", ko: "사자는 쥐를 붙잡았어요." },
+      { idx: 5, text: "The mouse said, \"Please let me go.\"", ko: "쥐가 말했어요. \"제발 살려주세요.\"" },
+      { idx: 6, text: "The lion laughed.", ko: "사자는 웃었어요." },
+      { idx: 7, text: "He let the mouse go.", ko: "그는 쥐를 놓아주었어요." },
+      { idx: 8, text: "Later, the lion was trapped.", ko: "나중에 사자는 덫에 걸렸어요." },
+      { idx: 9, text: "The mouse came back.", ko: "쥐가 다시 왔어요." },
+      { idx: 10, text: "The mouse bit the rope.", ko: "쥐는 밧줄을 갉았어요." },
+      { idx: 11, text: "The lion was free.", ko: "사자는 자유로워졌어요." },
+      { idx: 12, text: "Kindness is never wasted.", ko: "친절은 절대 헛되지 않아요." }
+    ]
   }
-{
-  id: "aesop_03",
-  title: "The Lion and the Mouse",
-  level: 1,
-  sentences: [
-    { idx: 1, text: "A lion was sleeping.", ko: "사자는 자고 있었어요." },
-    { idx: 2, text: "A small mouse ran over him.", ko: "작은 쥐가 사자 위를 달렸어요." },
-    { idx: 3, text: "The lion woke up.", ko: "사자는 깨어났어요." },
-    { idx: 4, text: "He caught the mouse.", ko: "사자는 쥐를 붙잡았어요." },
-    { idx: 5, text: "The mouse said, \"Please let me go.\"", ko: "쥐가 말했어요. \"제발 살려주세요.\"" },
-    { idx: 6, text: "The lion laughed.", ko: "사자는 웃었어요." },
-    { idx: 7, text: "He let the mouse go.", ko: "그는 쥐를 놓아주었어요." },
-    { idx: 8, text: "Later, the lion was trapped.", ko: "나중에 사자는 덫에 걸렸어요." },
-    { idx: 9, text: "The mouse came back.", ko: "쥐가 다시 왔어요." },
-    { idx: 10, text: "The mouse bit the rope.", ko: "쥐는 밧줄을 갉았어요." },
-    { idx: 11, text: "The lion was free.", ko: "사자는 자유로워졌어요." },
-    { idx: 12, text: "Kindness is never wasted.", ko: "친절은 절대 헛되지 않아요." }
-  ]
-}   
-
 ];
 
 /* ============ ELEMENTS ============ */
 const storySelect = document.getElementById("storySelect");
 const voiceSelect = document.getElementById("voiceSelect");
 const sentencesEl = document.getElementById("sentences");
+
 const playAllBtn = document.getElementById("playAll");
 const stopBtn = document.getElementById("stop");
+const refreshVoicesBtn = document.getElementById("refreshVoices");
+
 const rateInput = document.getElementById("rate");
 const repeatInput = document.getElementById("repeat");
-const refreshVoicesBtn = document.getElementById("refreshVoices");
+const intervalInput = document.getElementById("interval");
+
 const voiceStatus = document.getElementById("voiceStatus");
 
 let voices = [];
@@ -169,6 +218,8 @@ function setStatus(text, warn=false){
   voiceStatus.textContent = text;
   voiceStatus.classList.toggle("warn", warn);
 }
+
+function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
 
 function populateStories(){
   storySelect.innerHTML = "";
@@ -188,9 +239,8 @@ function renderSentences(){
     row.className = "sentence";
     row.dataset.idx = String(s.idx);
 
-    const intervalInput = document.getElementById("interval");
-    
     const textWrap = document.createElement("div");
+
     const en = document.createElement("div");
     en.className = "text en";
     en.textContent = s.text;
@@ -222,15 +272,15 @@ function renderSentences(){
   }
 }
 
-function getSelectedVoice(){
-  const uri = voiceSelect.value;
-  return voices.find(v => v.voiceURI === uri) || null;
-}
-
 function highlight(idx){
   document.querySelectorAll(".sentence").forEach(el => el.classList.remove("active"));
   const row = document.querySelector(`.sentence[data-idx="${idx}"]`);
   if (row) row.classList.add("active");
+}
+
+function getSelectedVoice(){
+  const uri = voiceSelect.value;
+  return voices.find(v => v.voiceURI === uri) || null;
 }
 
 /* ============ VOICES ============ */
@@ -239,6 +289,7 @@ function loadVoices(){
     setStatus("Voice: not supported", true);
     return;
   }
+
   voices = speechSynthesis.getVoices() || [];
   voiceSelect.innerHTML = "";
 
@@ -247,7 +298,7 @@ function loadVoices(){
     return;
   }
 
-  // prefer English voices first
+  // Prefer English voices first
   const sorted = [...voices].sort((a,b) => {
     const aEn = (a.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
     const bEn = (b.lang || "").toLowerCase().startsWith("en") ? 0 : 1;
@@ -264,7 +315,9 @@ function loadVoices(){
   setStatus(`Voice: ${voices.length} loaded`, false);
 }
 
-speechSynthesis.onvoiceschanged = () => loadVoices();
+if ("speechSynthesis" in window) {
+  speechSynthesis.onvoiceschanged = () => loadVoices();
+}
 
 /* ============ SPEAK ============ */
 function speakOnce(text){
@@ -282,7 +335,8 @@ function speakOnce(text){
 
 async function playSentence(idx, forceRepeat){
   playingAll = false;
-  speechSynthesis.cancel();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+
   highlight(idx);
 
   const s = currentStory.sentences.find(x => x.idx === idx);
@@ -291,30 +345,42 @@ async function playSentence(idx, forceRepeat){
   const repeat = Math.min(3, Math.max(1, Math.round(forceRepeat || Number(repeatInput.value || 1))));
   for (let i=0; i<repeat; i++){
     await speakOnce(s.text);
+    // Small pause between repeats (not the main interval)
+    if (i < repeat - 1) await sleep(250);
   }
 }
 
 async function playAll(){
   if (!currentStory) return;
+
   playingAll = true;
-  speechSynthesis.cancel();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
+
+  const intervalMs = Math.max(0, Number(intervalInput.value || 0)) * 1000;
 
   for (const s of currentStory.sentences){
     if (!playingAll) break;
+
     highlight(s.idx);
+
     const repeat = Math.min(3, Math.max(1, Math.round(Number(repeatInput.value || 1))));
     for (let i=0; i<repeat; i++){
       if (!playingAll) break;
       await speakOnce(s.text);
+      if (i < repeat - 1) await sleep(250);
     }
+
+    if (!playingAll) break;
+    if (intervalMs > 0) await sleep(intervalMs);
   }
+
   playingAll = false;
   highlight(-1);
 }
 
 function stopAll(){
   playingAll = false;
-  speechSynthesis.cancel();
+  if ("speechSynthesis" in window) speechSynthesis.cancel();
   highlight(-1);
 }
 
