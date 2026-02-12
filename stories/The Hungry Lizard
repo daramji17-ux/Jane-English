@@ -1,0 +1,17 @@
+{
+  "id": "funny_03",
+  "title": "The Hungry Lizard",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A small lizard is hungry.", "ko": "작은 도마뱀이 배가 고파요." },
+    { "idx": 2, "text": "He sees a long worm.", "ko": "그는 긴 벌레를 봐요." },
+    { "idx": 3, "text": "The worm is on a rock.", "ko": "그 벌레는 바위 위에 있어요." },
+    { "idx": 4, "text": "The lizard walks slowly.", "ko": "도마뱀은 천천히 걸어가요." },
+    { "idx": 5, "text": "He opens his mouth.", "ko": "그는 입을 벌려요." },
+    { "idx": 6, "text": "The worm moves fast.", "ko": "그 벌레는 빨리 움직여요." },
+    { "idx": 7, "text": "The lizard runs fast.", "ko": "도마뱀은 빨리 달려요." },
+    { "idx": 8, "text": "He jumps on the rock.", "ko": "그는 바위 위로 점프해요." },
+    { "idx": 9, "text": "The worm stops moving.", "ko": "그 벌레는 움직임을 멈춰요." },
+    { "idx": 10, "text": "Now the lizard eats the worm.", "ko": "이제 도마뱀은 벌레를 먹어요." }
+  ]
+}
