@@ -1,0 +1,19 @@
+{
+  "id": "aesop_13",
+  "title": "The Lion and the Three Bulls",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "Three bulls were best friends.", "ko": "세 황소는 가장 친한 친구였어요." },
+    { "idx": 2, "text": "They always stayed together.", "ko": "그들은 늘 함께 있었어요." },
+    { "idx": 3, "text": "A hungry lion watched them.", "ko": "배고픈 사자가 그들을 지켜봤어요." },
+    { "idx": 4, "text": "He could not catch them.", "ko": "그는 그들을 잡을 수 없었어요." },
+    { "idx": 5, "text": "Together, they were too strong.", "ko": "함께 있으면 그들은 너무 강했어요." },
+    { "idx": 6, "text": "So the lion told a lie.", "ko": "그래서 사자는 거짓말을 했어요." },
+    { "idx": 7, "text": "He made the bulls fight.", "ko": "그는 황소들을 싸우게 만들었어요." },
+    { "idx": 8, "text": "The bulls became angry.", "ko": "황소들은 화가 났어요." },
+    { "idx": 9, "text": "They walked away alone.", "ko": "그들은 혼자서 떠나갔어요." },
+    { "idx": 10, "text": "The lion attacked the first bull.", "ko": "사자는 첫 번째 황소를 공격했어요." },
+    { "idx": 11, "text": "Then he caught the others too.", "ko": "그리고 다른 황소들도 잡았어요." },
+    { "idx": 12, "text": "Divided we fall, united we stand.", "ko": "나뉘면 쓰러지고, 뭉치면 일어서요." }
+  ]
+}

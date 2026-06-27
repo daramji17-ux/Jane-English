@@ -1,0 +1,19 @@
+{
+  "id": "aesop_05",
+  "title": "The North Wind and the Sun",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "The wind and the sun had a fight.", "ko": "바람과 해가 다퉜어요." },
+    { "idx": 2, "text": "They saw a man with a coat.", "ko": "그들은 외투를 입은 사람을 봤어요." },
+    { "idx": 3, "text": "\"Who can take off his coat?\"", "ko": "\"누가 외투를 벗길 수 있을까?\"" },
+    { "idx": 4, "text": "The wind tried first.", "ko": "바람이 먼저 시도했어요." },
+    { "idx": 5, "text": "He blew very hard.", "ko": "그는 아주 세게 불었어요." },
+    { "idx": 6, "text": "The man held his coat tight.", "ko": "그 사람은 외투를 꽉 잡았어요." },
+    { "idx": 7, "text": "The wind blew harder.", "ko": "바람은 더 세게 불었어요." },
+    { "idx": 8, "text": "The man pulled his coat closer.", "ko": "그 사람은 외투를 더 꽉 여몄어요." },
+    { "idx": 9, "text": "Then the sun came out.", "ko": "그러자 해가 나왔어요." },
+    { "idx": 10, "text": "The sun shone warmly.", "ko": "해는 따뜻하게 비췄어요." },
+    { "idx": 11, "text": "The man took off his coat.", "ko": "그 사람은 외투를 벗었어요." },
+    { "idx": 12, "text": "Kindness is stronger than force.", "ko": "친절은 힘보다 강해요." }
+  ]
+}

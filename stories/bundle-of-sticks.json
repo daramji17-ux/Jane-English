@@ -1,0 +1,19 @@
+{
+  "id": "aesop_08",
+  "title": "The Bundle of Sticks",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "An old father had three sons.", "ko": "한 늙은 아버지에게 아들 셋이 있었어요." },
+    { "idx": 2, "text": "The sons always fought.", "ko": "아들들은 늘 싸웠어요." },
+    { "idx": 3, "text": "The father was very sad.", "ko": "아버지는 매우 슬펐어요." },
+    { "idx": 4, "text": "He called his sons one day.", "ko": "어느 날 그는 아들들을 불렀어요." },
+    { "idx": 5, "text": "He showed them a bundle of sticks.", "ko": "그는 막대기 묶음을 보여줬어요." },
+    { "idx": 6, "text": "\"Try to break this,\" he said.", "ko": "\"이것을 부러뜨려 봐라,\" 하고 말했어요." },
+    { "idx": 7, "text": "Each son tried hard.", "ko": "각 아들이 열심히 시도했어요." },
+    { "idx": 8, "text": "No one could break it.", "ko": "아무도 부러뜨릴 수 없었어요." },
+    { "idx": 9, "text": "The father untied the bundle.", "ko": "아버지는 묶음을 풀었어요." },
+    { "idx": 10, "text": "He gave one stick to each son.", "ko": "그는 아들들에게 막대기를 하나씩 줬어요." },
+    { "idx": 11, "text": "They broke the sticks easily.", "ko": "그들은 쉽게 막대기를 부러뜨렸어요." },
+    { "idx": 12, "text": "Together we are strong.", "ko": "함께하면 우리는 강해요." }
+  ]
+}

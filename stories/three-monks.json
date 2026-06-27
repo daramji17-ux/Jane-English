@@ -1,0 +1,19 @@
+{
+  "id": "aesop_11",
+  "title": "Three Monks",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "One monk lived on a hill.", "ko": "한 스님이 언덕 위에 살았어요." },
+    { "idx": 2, "text": "He carried water every day.", "ko": "그는 매일 물을 길어 왔어요." },
+    { "idx": 3, "text": "Then a second monk came.", "ko": "그러다 두 번째 스님이 왔어요." },
+    { "idx": 4, "text": "They carried water together.", "ko": "그들은 함께 물을 길어 왔어요." },
+    { "idx": 5, "text": "It was easy with two people.", "ko": "두 명이라 쉬웠어요." },
+    { "idx": 6, "text": "Then a third monk came.", "ko": "그러다 세 번째 스님이 왔어요." },
+    { "idx": 7, "text": "Each one waited for the others.", "ko": "각자 다른 사람을 기다렸어요." },
+    { "idx": 8, "text": "No one carried water.", "ko": "아무도 물을 길어 오지 않았어요." },
+    { "idx": 9, "text": "They were all thirsty.", "ko": "그들은 모두 목말랐어요." },
+    { "idx": 10, "text": "Finally, they made a plan.", "ko": "마침내 그들은 계획을 세웠어요." },
+    { "idx": 11, "text": "They worked together again.", "ko": "그들은 다시 함께 일했어요." },
+    { "idx": 12, "text": "More people need a better plan.", "ko": "사람이 많을수록 더 좋은 계획이 필요해요." }
+  ]
+}

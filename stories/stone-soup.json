@@ -1,0 +1,19 @@
+{
+  "id": "aesop_12",
+  "title": "Stone Soup",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A hungry traveler came to a town.", "ko": "배고픈 나그네가 마을에 왔어요." },
+    { "idx": 2, "text": "No one shared food with him.", "ko": "아무도 그에게 음식을 나누지 않았어요." },
+    { "idx": 3, "text": "He put a big pot on the fire.", "ko": "그는 큰 냄비를 불 위에 올렸어요." },
+    { "idx": 4, "text": "He dropped a stone inside.", "ko": "그는 돌멩이를 안에 넣었어요." },
+    { "idx": 5, "text": "\"I am making stone soup!\"", "ko": "\"나는 돌멩이 수프를 만들어요!\"" },
+    { "idx": 6, "text": "The people came to look.", "ko": "사람들이 보러 왔어요." },
+    { "idx": 7, "text": "\"It needs a carrot,\" he said.", "ko": "\"당근이 필요해요,\" 하고 그가 말했어요." },
+    { "idx": 8, "text": "One person brought a carrot.", "ko": "한 사람이 당근을 가져왔어요." },
+    { "idx": 9, "text": "Others brought potatoes and meat.", "ko": "다른 사람들이 감자와 고기를 가져왔어요." },
+    { "idx": 10, "text": "The soup smelled very good.", "ko": "수프는 아주 좋은 냄새가 났어요." },
+    { "idx": 11, "text": "Everyone ate together happily.", "ko": "모두가 함께 즐겁게 먹었어요." },
+    { "idx": 12, "text": "Sharing makes everyone richer.", "ko": "나눔은 모두를 더 풍요롭게 해요." }
+  ]
+}

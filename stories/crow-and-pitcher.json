@@ -1,0 +1,19 @@
+{
+  "id": "aesop_06",
+  "title": "The Crow and the Pitcher",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A crow was very thirsty.", "ko": "까마귀가 매우 목말랐어요." },
+    { "idx": 2, "text": "He looked for water everywhere.", "ko": "그는 사방에서 물을 찾았어요." },
+    { "idx": 3, "text": "He found a tall pitcher.", "ko": "그는 키 큰 물병을 찾았어요." },
+    { "idx": 4, "text": "There was a little water inside.", "ko": "안에 물이 조금 있었어요." },
+    { "idx": 5, "text": "His beak could not reach it.", "ko": "그의 부리가 물에 닿지 않았어요." },
+    { "idx": 6, "text": "He thought for a moment.", "ko": "그는 잠시 생각했어요." },
+    { "idx": 7, "text": "He saw small stones nearby.", "ko": "그는 근처에서 작은 돌을 봤어요." },
+    { "idx": 8, "text": "He dropped a stone in the pitcher.", "ko": "그는 돌을 물병에 떨어뜨렸어요." },
+    { "idx": 9, "text": "The water went up a little.", "ko": "물이 조금 올라왔어요." },
+    { "idx": 10, "text": "He dropped many more stones.", "ko": "그는 돌을 더 많이 떨어뜨렸어요." },
+    { "idx": 11, "text": "The water reached the top.", "ko": "물이 맨 위까지 올라왔어요." },
+    { "idx": 12, "text": "A clever mind solves big problems.", "ko": "지혜로운 마음은 큰 문제도 해결해요." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "aesop_09",
+  "title": "The King and the Two Servants",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A king had two servants.", "ko": "한 왕에게 하인이 둘 있었어요." },
+    { "idx": 2, "text": "He gave each a small job.", "ko": "그는 각자에게 작은 일을 줬어요." },
+    { "idx": 3, "text": "\"Take care of my garden.\"", "ko": "\"내 정원을 돌봐라.\"" },
+    { "idx": 4, "text": "The first servant worked hard.", "ko": "첫 번째 하인은 열심히 일했어요." },
+    { "idx": 5, "text": "He watered every plant.", "ko": "그는 모든 식물에 물을 줬어요." },
+    { "idx": 6, "text": "The second servant was lazy.", "ko": "두 번째 하인은 게을렀어요." },
+    { "idx": 7, "text": "He thought the job was too small.", "ko": "그는 일이 너무 작다고 생각했어요." },
+    { "idx": 8, "text": "The king came back later.", "ko": "왕은 나중에 돌아왔어요." },
+    { "idx": 9, "text": "The garden was full of flowers.", "ko": "정원은 꽃으로 가득했어요." },
+    { "idx": 10, "text": "He gave the first servant a big house.", "ko": "그는 첫 번째 하인에게 큰 집을 줬어요." },
+    { "idx": 11, "text": "The lazy servant got nothing.", "ko": "게으른 하인은 아무것도 받지 못했어요." },
+    { "idx": 12, "text": "Small jobs can bring big rewards.", "ko": "작은 일도 큰 보상을 가져올 수 있어요." }
+  ]
+}

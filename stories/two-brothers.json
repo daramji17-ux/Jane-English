@@ -1,0 +1,19 @@
+{
+  "id": "aesop_10",
+  "title": "The Two Brothers",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "Two brothers shared a farm.", "ko": "두 형제가 농장을 함께 가졌어요." },
+    { "idx": 2, "text": "They divided the rice equally.", "ko": "그들은 쌀을 똑같이 나눴어요." },
+    { "idx": 3, "text": "The older brother had a family.", "ko": "형은 가족이 있었어요." },
+    { "idx": 4, "text": "The younger brother lived alone.", "ko": "동생은 혼자 살았어요." },
+    { "idx": 5, "text": "At night, the older one thought.", "ko": "밤에 형이 생각했어요." },
+    { "idx": 6, "text": "\"My brother needs more rice.\"", "ko": "\"내 동생에게 쌀이 더 필요해.\"" },
+    { "idx": 7, "text": "He moved some rice to his brother.", "ko": "그는 쌀을 동생에게 옮겼어요." },
+    { "idx": 8, "text": "The younger brother also thought.", "ko": "동생도 생각했어요." },
+    { "idx": 9, "text": "\"My brother has a family.\"", "ko": "\"형에게는 가족이 있어.\"" },
+    { "idx": 10, "text": "He moved some rice too.", "ko": "그도 쌀을 옮겼어요." },
+    { "idx": 11, "text": "One night, they met on the road.", "ko": "어느 밤, 그들은 길에서 만났어요." },
+    { "idx": 12, "text": "True love gives without counting.", "ko": "진정한 사랑은 따지지 않고 줘요." }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "aesop_07",
+  "title": "The Wolf in Sheep's Clothing",
+  "level": 1,
+  "sentences": [
+    { "idx": 1, "text": "A wolf was always hungry.", "ko": "늑대는 늘 배가 고팠어요." },
+    { "idx": 2, "text": "He wanted to eat the sheep.", "ko": "그는 양을 먹고 싶었어요." },
+    { "idx": 3, "text": "But the shepherd watched closely.", "ko": "하지만 양치기가 잘 지켜봤어요." },
+    { "idx": 4, "text": "One day, he found a sheep's coat.", "ko": "어느 날, 그는 양의 가죽을 찾았어요." },
+    { "idx": 5, "text": "He put the coat on himself.", "ko": "그는 그 가죽을 입었어요." },
+    { "idx": 6, "text": "He looked just like a sheep.", "ko": "그는 꼭 양처럼 보였어요." },
+    { "idx": 7, "text": "He walked into the sheep group.", "ko": "그는 양 무리 속으로 걸어갔어요." },
+    { "idx": 8, "text": "No one knew he was a wolf.", "ko": "아무도 그가 늑대인지 몰랐어요." },
+    { "idx": 9, "text": "That night, the shepherd came.", "ko": "그날 밤, 양치기가 왔어요." },
+    { "idx": 10, "text": "He wanted meat for dinner.", "ko": "그는 저녁으로 고기를 원했어요." },
+    { "idx": 11, "text": "He picked the wolf by mistake.", "ko": "그는 실수로 늑대를 골랐어요." },
+    { "idx": 12, "text": "A lie can hurt the liar.", "ko": "거짓말은 거짓말한 사람을 다치게 해요." }
+  ]
+}
