@@ -1,5 +1,14 @@
 [
   { "id": "aesop_02", "title": "The Tortoise and the Hare", "level": 1, "file": "tortoise-hare.json" },
   { "id": "aesop_03", "title": "The Lion and the Mouse", "level": 1, "file": "lion-mouse.json" },
-  { "id": "aesop_04", "title": "The Hungry Lizard", "level": 1, "file": "the_hungry_lizard.json" }
+  { "id": "aesop_04", "title": "The Hungry Lizard", "level": 1, "file": "the_hungry_lizard.json" },
+  { "id": "aesop_05", "title": "The North Wind and the Sun", "level": 1, "file": "north-wind-and-sun.json" },
+  { "id": "aesop_06", "title": "The Crow and the Pitcher", "level": 1, "file": "crow-and-pitcher.json" },
+  { "id": "aesop_07", "title": "The Wolf in Sheep's Clothing", "level": 1, "file": "wolf-in-sheeps-clothing.json" },
+  { "id": "aesop_08", "title": "The Bundle of Sticks", "level": 1, "file": "bundle-of-sticks.json" },
+  { "id": "aesop_09", "title": "The King and the Two Servants", "level": 1, "file": "king-and-two-servants.json" },
+  { "id": "aesop_10", "title": "The Two Brothers", "level": 1, "file": "two-brothers.json" },
+  { "id": "aesop_11", "title": "Three Monks", "level": 1, "file": "three-monks.json" },
+  { "id": "aesop_12", "title": "Stone Soup", "level": 1, "file": "stone-soup.json" },
+  { "id": "aesop_13", "title": "The Lion and the Three Bulls", "level": 1, "file": "lion-and-three-bulls.json" }
 ]
